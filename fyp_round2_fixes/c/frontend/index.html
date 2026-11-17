@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vision Feedback - Research Analytics Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+    <!-- Auth Page -->
+    <div id="auth-page" class="page active">
+        <div class="auth-layout">
+            <!-- Left Panel -->
+            <div class="auth-left-panel">
+                <div class="decorative-circle" style="width: 160px; height: 160px; top: calc(50% - 80px); left: calc(50% - 80px);"></div>
+                <div class="decorative-circle" style="width: 240px; height: 240px; top: calc(50% - 120px); left: calc(50% - 120px);"></div>
+                <div class="decorative-circle" style="width: 320px; height: 320px; top: calc(50% - 160px); left: calc(50% - 160px);"></div>
+                <div class="decorative-circle" style="width: 400px; height: 400px; top: calc(50% - 200px); left: calc(50% - 200px);"></div>
+                
+                <div style="position: relative; text-align: center;">
+                    <div class="auth-logo">🎓</div>
+                    <h1 class="auth-title">Vision Feedback</h1>
+                    <div class="auth-tags-container">
+                        <span class="auth-tag">Research Analytics</span>
+                        <span class="auth-tag">AI Insights</span>
+                        <span class="auth-tag">Statistical Analysis</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel -->
+            <div class="auth-right-panel">
+                <div class="auth-form-container">
+                    <!-- Login Form -->
+                    <div id="login-form-container">
+                        <h2 class="form-title">Sign In</h2>
+                        <p class="form-subtitle">Welcome back to Vision Feedback</p>
+
+                        <div class="role-toggle">
+                            <button id="role-student" class="active">👤 Student</button>
+                            <button id="role-org">🏢 Organization</button>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" id="username-label">Username</label>
+                            <input type="text" id="login-username" class="form-input" placeholder="ahmed_raza">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Password</label>
+                            <div class="form-input-with-icon">
+                                <input type="password" id="login-password" class="form-input" placeholder="••••••••">
+                                <button id="login-password-toggle" class="password-toggle">👁️</button>
+                            </div>
+                        </div>
+
+                        <div class="form-links">
+                            <label class="form-checkbox">
+                                <input type="checkbox"> Remember me
+                            </label>
+                            <a href="#" class="form-link">Forgot password?</a>
+                        </div>
+
+                        <button id="login-submit" class="btn-primary">Sign In →</button>
+
+                        <p class="form-footer">
+                            Don't have an account?
+                            <button id="goto-student-signup">Sign Up</button>
+                        </p>
+                    </div>
+
+                    <!-- Student Signup Form -->
+                    <div id="student-signup-container" style="display: none;">
+                        <h2 class="form-title">Student Sign Up</h2>
+                        <p class="form-subtitle">Create your student account</p>
+
+                        <div class="form-group">
+                            <label class="form-label">Username</label>
+                            <input type="text" id="signup-username" class="form-input" placeholder="ahmed_raza">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Department</label>
+                            <input type="text" id="signup-department" class="form-input" placeholder="Computer Science">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" id="signup-email" class="form-input" placeholder="ahmed@university.edu">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Organization <span style="color: var(--indigo);">*</span></label>
+                            <select id="signup-org" class="form-input">
+                                <option value="University of Punjab">University of Punjab</option>
+                                <option value="NUCES FAST">NUCES FAST</option>
+                                <option value="COMSATS University">COMSATS University</option>
+                                <option value="Quaid-i-Azam University">Quaid-i-Azam University</option>
+                            </select>
+                            <p style="font-size: 11px; color: var(--muted); margin-top: 4px;">Select your registered organization</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Password</label>
+                            <input type="password" id="signup-password" class="form-input" placeholder="Min. 8 characters">
+                        </div>
+
+                        <button id="student-signup-submit" class="btn-primary">Create Account →</button>
+
+                        <p class="form-footer">
+                            <button id="back-to-login">← Back to login</button>
+                            ·
+                            <button id="goto-org-signup">Register as Organization</button>
+                        </p>
+                    </div>
+
+                    <!-- Organization Signup Form -->
+                    <div id="org-signup-container" style="display: none;">
+                        <h2 class="form-title">Organization Sign Up</h2>
+                        <p class="form-subtitle">Register your institution</p>
+
+                        <div class="form-group">
+                            <label class="form-label">Organization Name</label>
+                            <input type="text" id="org-signup-name" class="form-input" placeholder="University of Engineering">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Organization Email</label>
+                            <input type="email" id="org-signup-email" class="form-input" placeholder="admin@university.edu">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Location</label>
+                            <input type="text" id="org-signup-location" class="form-input" placeholder="Lahore, Pakistan">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Password</label>
+                            <input type="password" id="org-signup-password" class="form-input" placeholder="Min. 8 characters">
+                        </div>
+
+                        <button id="org-signup-submit" class="btn-primary">Register Organization →</button>
+
+                        <p class="form-footer">
+                            <button id="back-to-login-org">← Back to login</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Layout -->
+    <div id="dashboard-layout" class="dashboard-layout" style="display: none;">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header" id="sidebar-toggle">
+                <div class="sidebar-logo">🎓</div>
+                <span class="sidebar-brand-name">Vision Feedback</span>
+            </div>
+            <nav class="sidebar-nav" id="sidebar-nav">
+                <!-- Navigation items will be populated by JS -->
+            </nav>
+            <div class="sidebar-footer">
+                <div class="sidebar-user">
+                    <div class="sidebar-user-avatar" id="user-avatar">AR</div>
+                    <div class="sidebar-user-info">
+                        <p class="sidebar-user-name" id="user-name">Ahmed Raza</p>
+                        <p class="sidebar-user-role" id="user-role">Student</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Navbar -->
+            <header class="navbar">
+                <h1 class="navbar-title" id="page-title">Dashboard</h1>
+                <div class="navbar-actions">
+                    <button class="navbar-btn" id="theme-toggle">🌙</button>
+                    <button class="navbar-btn">🔔</button>
+                    <button class="navbar-signout" id="logout-btn">Sign Out</button>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <main class="page-content" id="page-content">
+                <!-- Content will be populated by JS -->
+            </main>
+        </div>
+    </div>
+
+    <script src="form-builder.js"></script>
+    <script src="form-fill.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
